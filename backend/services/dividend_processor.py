@@ -12,12 +12,9 @@ class DividendProcessor:
             dividend_per_share
         )
 
-        updated_cash_balance = (
-            current_cash_balance +
-            cash_received
-        )
-
         return {
             "cash_received": cash_received,
-            "updated_cash_balance": updated_cash_balance
+            "updated_cash_balance":
+            current_cash_balance +
+            cash_received
         }

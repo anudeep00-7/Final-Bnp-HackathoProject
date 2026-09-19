@@ -6,8 +6,13 @@ class ReconciliationService:
         after_state
     ):
 
+        matched = (
+            before_state !=
+            after_state
+        )
+
         return {
+            "matched": matched,
             "before": before_state,
-            "after": after_state,
-            "status": "RECONCILED"
+            "after": after_state
         }
