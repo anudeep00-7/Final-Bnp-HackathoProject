@@ -1,0 +1,17 @@
+ca_id,security_id,action_type,tier,status,ex_date,record_date,pay_date,election_deadline,ratio_numerator,ratio_denominator,cash_rate_per_share,subscription_price,offer_price,new_security_id,cost_basis_allocation_pct,tax_withholding_pct,notes
+CA001,SEC001,CASH_DIVIDEND,1,ACTIVE,2026-01-15,2026-01-16,2026-02-01,,,,0.50,,,,,15,Q1 dividend GlobalBank Corp - USD 0.50 per share
+CA002,SEC006,STOCK_SPLIT,1,ACTIVE,2026-01-20,2026-01-21,2026-01-22,,2,1,,,,,,,2-for-1 stock split Vertex Technologies
+CA003,SEC003,BONUS_ISSUE,1,ACTIVE,2026-02-05,2026-02-06,2026-02-10,,1,5,,,,,,,1 bonus share per 5 held Apex Pharma
+CA004,SEC005,STOCK_DIVIDEND,1,ACTIVE,2026-02-12,2026-02-13,2026-02-20,,1,20,,,,,,,1 new share per 20 held Harbor Retail fair value USD 19.80 on distribution date
+CA005,SEC002,MERGER,1,ACTIVE,2026-03-01,2026-03-02,2026-03-10,,3,4,2.00,,,SEC014,,,Northwind Industries acquired by Acquirer Corp - 3 AQC shares + USD 2.00 cash per 4 NWI shares held
+CA006,SEC004,SPIN_OFF,1,ACTIVE,2026-03-15,2026-03-16,2026-03-20,,1,10,,,,SEC013,15,,Solstice Energy spins off SpinCo Renewables - 1 SPN share per 10 SLE held; 15 pct of parent cost basis reallocated to SPN
+CA007,SEC007,DELISTING,1,ACTIVE,2026-03-25,2026-03-26,2026-04-01,,,,1.10,,,,,,Meridian Foods delisted - final liquidation cash proceeds USD 1.10 per share
+CA008,SEC008,RIGHTS_ISSUE,2,ACTIVE,2026-04-05,2026-04-06,2026-04-25,2026-04-20,1,4,,8.00,,,,,1-for-4 rights issue Cascade Materials at subscription price USD 8.00
+CA009,SEC009,TENDER_OFFER,2,ACTIVE,2026-04-10,2026-04-11,2026-05-01,2026-04-24,,,,,25.00,,,,Tender offer Union Freight at USD 25.00 per share capped at 30 pct of holding pro-rata if oversubscribed
+CA010,SEC001,DRIP_ELECTION,2,ACTIVE,2026-01-15,2026-01-16,2026-02-01,2026-01-25,,,0.50,,,,,,15,DRIP option attached to CA001 dividend; reinvestment price USD 42.00 per share (see ca_elections.csv)
+CA011,SEC011,CONVERSION,2,ACTIVE,2026-04-15,2026-04-16,2026-04-30,2026-04-20,25,1,,,,SEC009,,,Convertible bond UNF-CB28 convertible into UNF equity at 25 shares per bond unit
+CA012,SEC012,CONVERSION,2,ACTIVE,2026-04-15,2026-04-16,2026-04-30,2026-04-20,1,1,,,,SEC010,,,Preference shares FLC-PFD convertible into FLC common 1-for-1
+CA013,SEC010,REVERSE_SPLIT,3,ACTIVE,2026-05-05,2026-05-06,2026-05-06,,1,5,,,,,,,1-for-5 reverse split Falcon Insurance
+CA014,SEC005,NAME_CHANGE,1,ACTIVE,2026-05-15,,,,,,,,,,,,Harbor Retail renamed to Harbor Retail Group; symbol changes HBR to HRG, no economic impact
+CA015,SEC001,CASH_DIVIDEND,1,ACTIVE,2026-05-20,2026-05-21,2026-06-05,,,,0.55,,,,,15,Q2 dividend GlobalBank Corp - USD 0.55 per share
+CA016,SEC008,RIGHTS_ISSUE,3,REVERSED,2026-04-05,2026-04-06,2026-04-25,2026-04-20,1,4,,8.00,,,,,Duplicate rights issue entry created in error and later reversed - use to test reversal/correction and audit trail logic

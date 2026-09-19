@@ -1,0 +1,10 @@
+election_id,ca_id,portfolio_id,election_type,elected_qty,election_date,status,notes
+E001,CA008,P003,SUBSCRIBE,150,2026-04-18,CONFIRMED,P003 holds 600 CSM - full entitlement of 150 rights subscribed
+E002,CA008,P006,LAPSE,0,2026-04-19,CONFIRMED,P006 holds 2000 CSM - entitlement of 500 rights allowed to lapse unexercised
+E003,CA009,P001,TENDER,90,2026-04-20,CONFIRMED,P001 holds 300 UNF - tendering full 30 pct cap of 90 shares
+E004,CA009,P007,TENDER,750,2026-04-22,CONFIRMED,P007 holds 2500 UNF - tendering full 30 pct cap of 750 shares
+E005,CA010,P001,DRIP,,2026-01-25,CONFIRMED,P001 elects to reinvest GBC dividend into additional shares at USD 42.00
+E006,CA010,P004,CASH,,2026-01-25,CONFIRMED,P004 elects standard cash dividend (no reinvestment) - default election
+E007,CA010,P007,DRIP,,2026-01-24,CONFIRMED,P007 elects to reinvest GBC dividend into additional shares at USD 42.00
+E008,CA011,P003,CONVERT,100,2026-04-18,CONFIRMED,P003 converts all 100 units of UNF-CB28 into UNF equity
+E009,CA012,P005,CONVERT,300,2026-04-19,CONFIRMED,P005 converts all 300 FLC-PFD preference shares into FLC common

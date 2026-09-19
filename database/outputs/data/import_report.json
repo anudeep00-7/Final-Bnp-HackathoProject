@@ -1,0 +1,184 @@
+{
+  "mode": "known",
+  "files": {
+    "securities": {
+      "path": "/Users/likki/Downloads/UC 4 data32a2081/D1 securities.csv",
+      "sha256": "0f761c204dcf533c2dd0caed3df44f8d306d3accc3f3c21a7d2ac01a0cdf8b41",
+      "source_rows": 14
+    },
+    "portfolios": {
+      "path": "/Users/likki/Downloads/UC 4 data32a2081/D2 portfolios.csv",
+      "sha256": "f56dd7d0728a4f158f1b80883d2b60c13bd783da56bb011715e9e54ea61f799d",
+      "source_rows": 8
+    },
+    "positions": {
+      "path": "/Users/likki/Downloads/UC 4 data32a2081/D3 positions.csv",
+      "sha256": "d44c13688a1a5493d149afd3ff15227c742da97368a8919757bcf2cc2f63944d",
+      "source_rows": 27
+    },
+    "cash_balances": {
+      "path": "/Users/likki/Downloads/UC 4 data32a2081/D4 cash_balances.csv",
+      "sha256": "eae88271c0064f1ede3c2c50eb2a8ee3fcd7986ab68c57ba464745fff37a04a2",
+      "source_rows": 8
+    },
+    "prices": {
+      "path": "/Users/likki/Downloads/UC 4 data32a2081/D5 prices.csv",
+      "sha256": "dc19e8f8a3b5fb9a3f44f4b0207ab7f76d3c6fedda08b59d103d9da43e1f2e7e",
+      "source_rows": 41
+    },
+    "corporate_action_events": {
+      "path": "/Users/likki/Downloads/UC 4 data32a2081/D6 corporate_actions.csv",
+      "sha256": "6302af1b97e40c3dbc24d79539ec2cde0aaecc274c5709d2cc5ac6d6d689848d",
+      "source_rows": 16
+    },
+    "ca_elections": {
+      "path": "/Users/likki/Downloads/UC 4 data32a2081/D7 ca_elections.csv",
+      "sha256": "12b2897bf5f2b7711b2b13f0e90deb035282f737f0c213d22b36dd191719b009",
+      "source_rows": 9
+    }
+  },
+  "issues": [
+    {
+      "table": "prices",
+      "line": 19,
+      "code": "REPAIR",
+      "message": "Join comma-split final note; all typed fields unchanged",
+      "raw_fields": [
+        "SEC005",
+        "2026-05-15",
+        "21.00",
+        "Post name-change - no economic impact",
+        " symbol changes to HRG"
+      ],
+      "parsed_fields": [
+        "SEC005",
+        "2026-05-15",
+        "21.00",
+        "Post name-change - no economic impact, symbol changes to HRG"
+      ]
+    },
+    {
+      "table": "corporate_action_events",
+      "line": 11,
+      "code": "REPAIR",
+      "message": "Remove surplus empty cell at field 17; restore withholding 15 to field 17 and notes to field 18",
+      "raw_fields": [
+        "CA010",
+        "SEC001",
+        "DRIP_ELECTION",
+        "2",
+        "ACTIVE",
+        "2026-01-15",
+        "2026-01-16",
+        "2026-02-01",
+        "2026-01-25",
+        "",
+        "",
+        "0.50",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "15",
+        "DRIP option attached to CA001 dividend; reinvestment price USD 42.00 per share (see ca_elections.csv)"
+      ],
+      "parsed_fields": [
+        "CA010",
+        "SEC001",
+        "DRIP_ELECTION",
+        "2",
+        "ACTIVE",
+        "2026-01-15",
+        "2026-01-16",
+        "2026-02-01",
+        "2026-01-25",
+        "",
+        "",
+        "0.50",
+        "",
+        "",
+        "",
+        "",
+        "15",
+        "DRIP option attached to CA001 dividend; reinvestment price USD 42.00 per share (see ca_elections.csv)"
+      ]
+    },
+    {
+      "table": "corporate_action_events",
+      "line": 15,
+      "code": "REPAIR",
+      "message": "Join comma-split final notes; all typed fields unchanged",
+      "raw_fields": [
+        "CA014",
+        "SEC005",
+        "NAME_CHANGE",
+        "1",
+        "ACTIVE",
+        "2026-05-15",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Harbor Retail renamed to Harbor Retail Group; symbol changes HBR to HRG",
+        " no economic impact"
+      ],
+      "parsed_fields": [
+        "CA014",
+        "SEC005",
+        "NAME_CHANGE",
+        "1",
+        "ACTIVE",
+        "2026-05-15",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Harbor Retail renamed to Harbor Retail Group; symbol changes HBR to HRG, no economic impact"
+      ]
+    }
+  ],
+  "valid_counts": {
+    "securities": 14,
+    "portfolios": 8,
+    "positions": 27,
+    "cash_balances": 8,
+    "prices": 41,
+    "corporate_action_events": 16,
+    "ca_elections": 9
+  },
+  "source_unchanged": true,
+  "error_count": 0,
+  "repair_count": 3,
+  "business_warnings": [
+    "All ACTIVE events require reviewed eligibility/recognition/rounding policy before processing.",
+    "CA005 cash terms conflict.",
+    "CA010 is linked to CA001, not a second dividend.",
+    "CA016 has no supplied original reversal history.",
+    "See docs/BUSINESS_RULES.md for price and policy ambiguities."
+  ],
+  "import_status": "COMMITTED",
+  "imported_counts": {
+    "securities": 14,
+    "portfolios": 8,
+    "positions": 27,
+    "cash_balances": 8,
+    "prices": 41,
+    "corporate_action_events": 16,
+    "ca_elections": 9
+  }
+}

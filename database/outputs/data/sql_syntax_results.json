@@ -1,0 +1,49 @@
+{
+  "parser_postgresql_version": [
+    17,
+    4
+  ],
+  "runtime_execution": false,
+  "files": [
+    {
+      "file": "schema/01_create_schema.sql",
+      "statements_parsed": 4,
+      "plpgsql_bodies_parsed": 1
+    },
+    {
+      "file": "schema/02_create_tables.sql",
+      "statements_parsed": 14,
+      "plpgsql_bodies_parsed": 0
+    },
+    {
+      "file": "schema/03_constraints.sql",
+      "statements_parsed": 29,
+      "plpgsql_bodies_parsed": 6
+    },
+    {
+      "file": "schema/04_indexes.sql",
+      "statements_parsed": 19,
+      "plpgsql_bodies_parsed": 0
+    },
+    {
+      "file": "schema/05_seed_users.sql",
+      "statements_parsed": 2,
+      "plpgsql_bodies_parsed": 0
+    },
+    {
+      "file": "schema/06_views.sql",
+      "statements_parsed": 8,
+      "plpgsql_bodies_parsed": 0
+    },
+    {
+      "file": "schema/07_settlement_audit.sql",
+      "statements_parsed": 4,
+      "plpgsql_bodies_parsed": 1
+    },
+    {
+      "file": "tests/database_tests.sql",
+      "statements_parsed": 54,
+      "plpgsql_bodies_parsed": 2
+    }
+  ]
+}

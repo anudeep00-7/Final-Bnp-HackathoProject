@@ -1,0 +1,42 @@
+security_id,price_date,close_price,note
+SEC001,2026-01-01,38.00,Opening bootstrap price
+SEC001,2026-01-14,38.20,Pre cum-dividend close (day before ex-date)
+SEC001,2026-01-15,37.70,Ex-dividend adjusted open
+SEC001,2026-05-19,41.00,Pre CA015 cum-dividend close
+SEC001,2026-05-20,40.45,Ex-dividend adjusted for CA015
+SEC002,2026-01-01,18.00,Opening bootstrap price
+SEC002,2026-02-28,19.50,Pre-merger close (day before ex-date CA005)
+SEC003,2026-01-01,22.00,Opening bootstrap price
+SEC003,2026-02-04,24.00,Pre bonus-issue close (day before ex-date CA003)
+SEC003,2026-02-10,20.00,Post bonus-issue adjusted price (pay date)
+SEC004,2026-01-01,44.00,Opening bootstrap price
+SEC004,2026-03-14,46.00,Pre spin-off close (day before ex-date CA006)
+SEC004,2026-03-20,39.10,Post spin-off adjusted parent price (pay date)
+SEC005,2026-01-01,19.50,Opening bootstrap price
+SEC005,2026-02-11,20.00,Pre stock-dividend close (day before ex-date CA004)
+SEC005,2026-02-20,19.80,Fair value used for CA004 stock dividend distribution
+SEC005,2026-05-14,21.00,Pre name-change close
+SEC005,2026-05-15,21.00,Post name-change - no economic impact, symbol changes to HRG
+SEC006,2026-01-01,150.00,Opening bootstrap price
+SEC006,2026-01-19,152.00,Pre-split close (day before ex-date CA002)
+SEC006,2026-01-22,76.00,Post-split adjusted price (pay date)
+SEC007,2026-01-01,15.00,Opening bootstrap price
+SEC007,2026-03-24,12.00,Pre-delisting close (day before ex-date CA007)
+SEC007,2026-04-01,1.10,Final liquidation cash proceeds per share (pay date)
+SEC008,2026-01-01,32.00,Opening bootstrap price
+SEC008,2026-04-04,34.00,Pre rights-issue close (day before ex-date CA008)
+SEC008,2026-04-25,31.50,Theoretical ex-rights price (TERP) after CA008 pay date
+SEC009,2026-01-01,24.00,Opening bootstrap price
+SEC009,2026-04-09,26.00,Pre tender-offer close (day before ex-date CA009)
+SEC009,2026-05-01,26.50,Post tender-offer close (pay date)
+SEC010,2026-01-01,60.00,Opening bootstrap price
+SEC010,2026-05-04,65.00,Pre reverse-split close (day before ex-date CA013)
+SEC010,2026-05-06,325.00,Post reverse-split adjusted price (pay date)
+SEC011,2026-01-01,1000.00,Opening bootstrap price (par value basis)
+SEC011,2026-04-14,1050.00,Pre-conversion close (day before ex-date CA011)
+SEC012,2026-01-01,50.00,Opening bootstrap price
+SEC012,2026-04-14,62.00,Pre-conversion close (day before ex-date CA012)
+SEC013,2026-03-20,6.90,SpinCo Renewables opening price on distribution (pay date CA006)
+SEC014,2026-01-01,29.00,Opening bootstrap price
+SEC014,2026-03-01,30.00,Pre-merger-completion close
+SEC014,2026-03-10,30.50,Post-merger close (pay date CA005)

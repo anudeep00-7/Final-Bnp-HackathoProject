@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from ai import nl_query
-from database.db import get_db
+from backend.database.db import get_db
 from routes.auth_routes import get_current_user
 from services import audit_service
 

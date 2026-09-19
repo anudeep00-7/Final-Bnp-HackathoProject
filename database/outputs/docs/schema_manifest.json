@@ -1,0 +1,1012 @@
+{
+  "securities": {
+    "columns": {
+      "security_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "symbol": {
+        "type": "text",
+        "nullable": false
+      },
+      "name": {
+        "type": "text",
+        "nullable": false
+      },
+      "type": {
+        "type": "text",
+        "nullable": false
+      },
+      "currency": {
+        "type": "text",
+        "nullable": false
+      },
+      "underlying_security_id": {
+        "type": "text",
+        "nullable": true
+      },
+      "status": {
+        "type": "text",
+        "nullable": false
+      }
+    },
+    "pk": [
+      "security_id"
+    ],
+    "unique": [],
+    "fks": []
+  },
+  "portfolios": {
+    "columns": {
+      "portfolio_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "portfolio_name": {
+        "type": "text",
+        "nullable": false
+      },
+      "client_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "client_type": {
+        "type": "text",
+        "nullable": false
+      },
+      "base_currency": {
+        "type": "text",
+        "nullable": false
+      }
+    },
+    "pk": [
+      "portfolio_id"
+    ],
+    "unique": [],
+    "fks": []
+  },
+  "users": {
+    "columns": {
+      "user_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "display_name": {
+        "type": "text",
+        "nullable": false
+      },
+      "role": {
+        "type": "text",
+        "nullable": false
+      },
+      "auth_subject": {
+        "type": "text",
+        "nullable": true
+      },
+      "is_active": {
+        "type": "bool",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    },
+    "pk": [
+      "user_id"
+    ],
+    "unique": [
+      [
+        "auth_subject"
+      ]
+    ],
+    "fks": []
+  },
+  "user_portfolios": {
+    "columns": {
+      "user_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "portfolio_id": {
+        "type": "text",
+        "nullable": false
+      }
+    },
+    "pk": [
+      "user_id",
+      "portfolio_id"
+    ],
+    "unique": [],
+    "fks": [
+      {
+        "columns": [
+          "user_id"
+        ],
+        "table": "users",
+        "references": [
+          "user_id"
+        ]
+      },
+      {
+        "columns": [
+          "portfolio_id"
+        ],
+        "table": "portfolios",
+        "references": [
+          "portfolio_id"
+        ]
+      }
+    ]
+  },
+  "positions": {
+    "columns": {
+      "portfolio_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "security_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "qty": {
+        "type": "finite_numeric",
+        "nullable": false
+      },
+      "avg_cost": {
+        "type": "finite_numeric",
+        "nullable": false
+      },
+      "as_of_date": {
+        "type": "date",
+        "nullable": false
+      }
+    },
+    "pk": [
+      "portfolio_id",
+      "security_id",
+      "as_of_date"
+    ],
+    "unique": [],
+    "fks": [
+      {
+        "columns": [
+          "portfolio_id"
+        ],
+        "table": "portfolios",
+        "references": [
+          "portfolio_id"
+        ]
+      },
+      {
+        "columns": [
+          "security_id"
+        ],
+        "table": "securities",
+        "references": [
+          "security_id"
+        ]
+      }
+    ]
+  },
+  "cash_balances": {
+    "columns": {
+      "portfolio_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "currency": {
+        "type": "text",
+        "nullable": false
+      },
+      "balance": {
+        "type": "finite_numeric",
+        "nullable": false
+      },
+      "as_of_date": {
+        "type": "date",
+        "nullable": false
+      }
+    },
+    "pk": [
+      "portfolio_id",
+      "currency",
+      "as_of_date"
+    ],
+    "unique": [],
+    "fks": [
+      {
+        "columns": [
+          "portfolio_id"
+        ],
+        "table": "portfolios",
+        "references": [
+          "portfolio_id"
+        ]
+      }
+    ]
+  },
+  "prices": {
+    "columns": {
+      "security_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "price_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "close_price": {
+        "type": "finite_numeric",
+        "nullable": false
+      },
+      "note": {
+        "type": "text",
+        "nullable": true
+      }
+    },
+    "pk": [
+      "security_id",
+      "price_date"
+    ],
+    "unique": [],
+    "fks": [
+      {
+        "columns": [
+          "security_id"
+        ],
+        "table": "securities",
+        "references": [
+          "security_id"
+        ]
+      }
+    ]
+  },
+  "corporate_action_events": {
+    "columns": {
+      "ca_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "security_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "action_type": {
+        "type": "text",
+        "nullable": false
+      },
+      "tier": {
+        "type": "smallint",
+        "nullable": false
+      },
+      "status": {
+        "type": "text",
+        "nullable": false
+      },
+      "ex_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "record_date": {
+        "type": "date",
+        "nullable": true
+      },
+      "pay_date": {
+        "type": "date",
+        "nullable": true
+      },
+      "election_deadline": {
+        "type": "date",
+        "nullable": true
+      },
+      "ratio_numerator": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "ratio_denominator": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "cash_rate_per_share": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "subscription_price": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "offer_price": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "new_security_id": {
+        "type": "text",
+        "nullable": true
+      },
+      "cost_basis_allocation_pct": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "tax_withholding_pct": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "notes": {
+        "type": "text",
+        "nullable": true
+      }
+    },
+    "pk": [
+      "ca_id"
+    ],
+    "unique": [
+      [
+        "ca_id",
+        "security_id"
+      ]
+    ],
+    "fks": [
+      {
+        "columns": [
+          "security_id"
+        ],
+        "table": "securities",
+        "references": [
+          "security_id"
+        ]
+      },
+      {
+        "columns": [
+          "new_security_id"
+        ],
+        "table": "securities",
+        "references": [
+          "security_id"
+        ]
+      }
+    ]
+  },
+  "event_terms": {
+    "columns": {
+      "ca_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "announcement_date": {
+        "type": "date",
+        "nullable": true
+      },
+      "parent_ca_id": {
+        "type": "text",
+        "nullable": true
+      },
+      "supersedes_ca_id": {
+        "type": "text",
+        "nullable": true
+      },
+      "new_name": {
+        "type": "text",
+        "nullable": true
+      },
+      "new_symbol": {
+        "type": "text",
+        "nullable": true
+      },
+      "reinvestment_price": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "tender_cap_pct": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "policy": {
+        "type": "jsonb",
+        "nullable": false
+      },
+      "processing_block_reason": {
+        "type": "text",
+        "nullable": false
+      },
+      "reviewed_by": {
+        "type": "text",
+        "nullable": true
+      },
+      "reviewed_at": {
+        "type": "timestamp with time zone",
+        "nullable": true
+      },
+      "provenance": {
+        "type": "text",
+        "nullable": false
+      }
+    },
+    "pk": [
+      "ca_id"
+    ],
+    "unique": [],
+    "fks": [
+      {
+        "columns": [
+          "ca_id"
+        ],
+        "table": "corporate_action_events",
+        "references": [
+          "ca_id"
+        ]
+      },
+      {
+        "columns": [
+          "parent_ca_id"
+        ],
+        "table": "corporate_action_events",
+        "references": [
+          "ca_id"
+        ]
+      },
+      {
+        "columns": [
+          "supersedes_ca_id"
+        ],
+        "table": "corporate_action_events",
+        "references": [
+          "ca_id"
+        ]
+      },
+      {
+        "columns": [
+          "reviewed_by"
+        ],
+        "table": "users",
+        "references": [
+          "user_id"
+        ]
+      }
+    ]
+  },
+  "ca_elections": {
+    "columns": {
+      "election_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "ca_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "portfolio_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "election_type": {
+        "type": "text",
+        "nullable": false
+      },
+      "elected_qty": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "election_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "status": {
+        "type": "text",
+        "nullable": false
+      },
+      "notes": {
+        "type": "text",
+        "nullable": true
+      }
+    },
+    "pk": [
+      "election_id"
+    ],
+    "unique": [
+      [
+        "ca_id",
+        "portfolio_id"
+      ],
+      [
+        "election_id",
+        "ca_id",
+        "portfolio_id"
+      ]
+    ],
+    "fks": [
+      {
+        "columns": [
+          "ca_id"
+        ],
+        "table": "corporate_action_events",
+        "references": [
+          "ca_id"
+        ]
+      },
+      {
+        "columns": [
+          "portfolio_id"
+        ],
+        "table": "portfolios",
+        "references": [
+          "portfolio_id"
+        ]
+      }
+    ]
+  },
+  "ca_processing": {
+    "columns": {
+      "processing_id": {
+        "type": "bigint",
+        "nullable": false
+      },
+      "ca_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "portfolio_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "security_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "election_id": {
+        "type": "text",
+        "nullable": true
+      },
+      "status": {
+        "type": "text",
+        "nullable": false
+      },
+      "processing_date": {
+        "type": "timestamp with time zone",
+        "nullable": false
+      },
+      "effective_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "rule_applied": {
+        "type": "text",
+        "nullable": false
+      },
+      "rule_version": {
+        "type": "text",
+        "nullable": false
+      },
+      "eligible_qty": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "eligibility_date": {
+        "type": "date",
+        "nullable": true
+      },
+      "before_quantity": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "after_quantity": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "before_avg_cost": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "after_avg_cost": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "before_cost_basis": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "after_cost_basis": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "currency": {
+        "type": "text",
+        "nullable": false
+      },
+      "before_cash": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "cash_movement": {
+        "type": "finite_numeric",
+        "nullable": false
+      },
+      "after_cash": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "before_market_value": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "after_market_value": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "before_receivable_value": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "after_receivable_value": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "reconciliation_difference": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "expected_leakage": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "before_state": {
+        "type": "jsonb",
+        "nullable": false
+      },
+      "after_state": {
+        "type": "jsonb",
+        "nullable": false
+      },
+      "error_reason": {
+        "type": "text",
+        "nullable": true
+      },
+      "processed_by": {
+        "type": "text",
+        "nullable": false
+      },
+      "reversal_of": {
+        "type": "bigint",
+        "nullable": true
+      },
+      "reversal_reason": {
+        "type": "text",
+        "nullable": true
+      },
+      "created_at": {
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    },
+    "pk": [
+      "processing_id"
+    ],
+    "unique": [
+      [
+        "reversal_of"
+      ],
+      [
+        "processing_id",
+        "ca_id",
+        "portfolio_id",
+        "security_id"
+      ],
+      [
+        "processing_id",
+        "portfolio_id"
+      ]
+    ],
+    "fks": [
+      {
+        "columns": [
+          "portfolio_id"
+        ],
+        "table": "portfolios",
+        "references": [
+          "portfolio_id"
+        ]
+      },
+      {
+        "columns": [
+          "security_id"
+        ],
+        "table": "securities",
+        "references": [
+          "security_id"
+        ]
+      },
+      {
+        "columns": [
+          "processed_by"
+        ],
+        "table": "users",
+        "references": [
+          "user_id"
+        ]
+      },
+      {
+        "columns": [
+          "reversal_of"
+        ],
+        "table": "ca_processing",
+        "references": [
+          "processing_id"
+        ]
+      },
+      {
+        "columns": [
+          "ca_id",
+          "security_id"
+        ],
+        "table": "corporate_action_events",
+        "references": [
+          "ca_id",
+          "security_id"
+        ]
+      },
+      {
+        "columns": [
+          "election_id",
+          "ca_id",
+          "portfolio_id"
+        ],
+        "table": "ca_elections",
+        "references": [
+          "election_id",
+          "ca_id",
+          "portfolio_id"
+        ]
+      }
+    ]
+  },
+  "settlements": {
+    "columns": {
+      "settlement_id": {
+        "type": "bigint",
+        "nullable": false
+      },
+      "processing_id": {
+        "type": "bigint",
+        "nullable": false
+      },
+      "portfolio_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "security_id": {
+        "type": "text",
+        "nullable": true
+      },
+      "leg_code": {
+        "type": "text",
+        "nullable": false
+      },
+      "settlement_type": {
+        "type": "text",
+        "nullable": false
+      },
+      "quantity_movement": {
+        "type": "finite_numeric",
+        "nullable": false
+      },
+      "cash_movement": {
+        "type": "finite_numeric",
+        "nullable": false
+      },
+      "currency": {
+        "type": "text",
+        "nullable": false
+      },
+      "recognition_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "settlement_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "settled_at": {
+        "type": "timestamp with time zone",
+        "nullable": true
+      },
+      "status": {
+        "type": "text",
+        "nullable": false
+      },
+      "cost_basis_movement": {
+        "type": "finite_numeric",
+        "nullable": true
+      },
+      "reversal_of": {
+        "type": "bigint",
+        "nullable": true
+      }
+    },
+    "pk": [
+      "settlement_id"
+    ],
+    "unique": [
+      [
+        "reversal_of"
+      ],
+      [
+        "processing_id",
+        "leg_code"
+      ]
+    ],
+    "fks": [
+      {
+        "columns": [
+          "portfolio_id"
+        ],
+        "table": "portfolios",
+        "references": [
+          "portfolio_id"
+        ]
+      },
+      {
+        "columns": [
+          "security_id"
+        ],
+        "table": "securities",
+        "references": [
+          "security_id"
+        ]
+      },
+      {
+        "columns": [
+          "reversal_of"
+        ],
+        "table": "settlements",
+        "references": [
+          "settlement_id"
+        ]
+      },
+      {
+        "columns": [
+          "processing_id",
+          "portfolio_id"
+        ],
+        "table": "ca_processing",
+        "references": [
+          "processing_id",
+          "portfolio_id"
+        ]
+      }
+    ]
+  },
+  "audit_logs": {
+    "columns": {
+      "audit_id": {
+        "type": "bigint",
+        "nullable": false
+      },
+      "processing_id": {
+        "type": "bigint",
+        "nullable": false
+      },
+      "ca_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "security_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "portfolio_id": {
+        "type": "text",
+        "nullable": false
+      },
+      "action": {
+        "type": "text",
+        "nullable": false
+      },
+      "outcome": {
+        "type": "text",
+        "nullable": false
+      },
+      "processing_date": {
+        "type": "timestamp with time zone",
+        "nullable": false
+      },
+      "rule_applied": {
+        "type": "text",
+        "nullable": false
+      },
+      "before_state": {
+        "type": "jsonb",
+        "nullable": false
+      },
+      "after_state": {
+        "type": "jsonb",
+        "nullable": false
+      },
+      "cash_movement": {
+        "type": "finite_numeric",
+        "nullable": false
+      },
+      "performed_by": {
+        "type": "text",
+        "nullable": false
+      },
+      "occurred_at": {
+        "type": "timestamp with time zone",
+        "nullable": false
+      },
+      "reason": {
+        "type": "text",
+        "nullable": true
+      },
+      "reversal_of": {
+        "type": "bigint",
+        "nullable": true
+      }
+    },
+    "pk": [
+      "audit_id"
+    ],
+    "unique": [],
+    "fks": [
+      {
+        "columns": [
+          "ca_id"
+        ],
+        "table": "corporate_action_events",
+        "references": [
+          "ca_id"
+        ]
+      },
+      {
+        "columns": [
+          "security_id"
+        ],
+        "table": "securities",
+        "references": [
+          "security_id"
+        ]
+      },
+      {
+        "columns": [
+          "portfolio_id"
+        ],
+        "table": "portfolios",
+        "references": [
+          "portfolio_id"
+        ]
+      },
+      {
+        "columns": [
+          "performed_by"
+        ],
+        "table": "users",
+        "references": [
+          "user_id"
+        ]
+      },
+      {
+        "columns": [
+          "reversal_of"
+        ],
+        "table": "audit_logs",
+        "references": [
+          "audit_id"
+        ]
+      },
+      {
+        "columns": [
+          "processing_id",
+          "ca_id",
+          "portfolio_id",
+          "security_id"
+        ],
+        "table": "ca_processing",
+        "references": [
+          "processing_id",
+          "ca_id",
+          "portfolio_id",
+          "security_id"
+        ]
+      }
+    ]
+  }
+}

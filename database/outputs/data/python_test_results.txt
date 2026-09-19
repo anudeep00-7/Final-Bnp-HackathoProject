@@ -1,0 +1,36 @@
+test_bonus (test_validation.RuleTests.test_bonus) ... ok
+test_bonus_fraction (test_validation.RuleTests.test_bonus_fraction) ... ok
+test_cash_dividend (test_validation.RuleTests.test_cash_dividend) ... ok
+test_cash_missing_tax_policy (test_validation.RuleTests.test_cash_missing_tax_policy) ... ok
+test_fraction_requires_policy (test_validation.RuleTests.test_fraction_requires_policy) ... ok
+test_name_change (test_validation.RuleTests.test_name_change) ... ok
+test_name_missing_terms (test_validation.RuleTests.test_name_missing_terms) ... ok
+test_negative_holding_rejected (test_validation.RuleTests.test_negative_holding_rejected) ... ok
+test_reversed_event (test_validation.RuleTests.test_reversed_event) ... ok
+test_rights_excess (test_validation.RuleTests.test_rights_excess) ... ok
+test_rights_full (test_validation.RuleTests.test_rights_full) ... ok
+test_rights_insufficient_cash (test_validation.RuleTests.test_rights_insufficient_cash) ... ok
+test_rights_lapse (test_validation.RuleTests.test_rights_lapse) ... ok
+test_rights_partial (test_validation.RuleTests.test_rights_partial) ... ok
+test_rounding_policy_required (test_validation.RuleTests.test_rounding_policy_required) ... ok
+test_split (test_validation.RuleTests.test_split) ... ok
+test_split_invalid_ratio (test_validation.RuleTests.test_split_invalid_ratio) ... ok
+test_unknown_rule_not_guessed (test_validation.RuleTests.test_unknown_rule_not_guessed) ... ok
+test_duplicate_key_quarantines_all (test_validation.ValidationTests.test_duplicate_key_quarantines_all) ... ok
+test_header_mismatch (test_validation.ValidationTests.test_header_mismatch) ... ok
+test_invalid_date (test_validation.ValidationTests.test_invalid_date) ... ok
+test_invalid_foreign_key (test_validation.ValidationTests.test_invalid_foreign_key) ... ok
+test_late_election (test_validation.ValidationTests.test_late_election) ... ok
+test_malformed_quote (test_validation.ValidationTests.test_malformed_quote) ... ok
+test_nonfinite_numbers (test_validation.ValidationTests.test_nonfinite_numbers) ... ok
+test_required_field (test_validation.ValidationTests.test_required_field) ... ok
+test_sources_unchanged (test_validation.ValidationTests.test_sources_unchanged) ... ok
+test_strict_quarantines_dependents (test_validation.ValidationTests.test_strict_quarantines_dependents) ... ok
+test_supplied_known_repairs (test_validation.ValidationTests.test_supplied_known_repairs) ... ok
+test_unknown_version_not_repaired (test_validation.ValidationTests.test_unknown_version_not_repaired) ... ok
+test_wrong_election_type (test_validation.ValidationTests.test_wrong_election_type) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.058s
+
+OK

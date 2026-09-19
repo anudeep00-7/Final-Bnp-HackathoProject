@@ -1,0 +1,8 @@
+{
+  "server": "PostgreSQL 17.11 installed",
+  "startup": "FAILED",
+  "startup_error": "initdb: shmget Operation not permitted in sandbox",
+  "sql_suite": "NOT_EXECUTED",
+  "database_records_imported": 0,
+  "test_connection_error": "OperationalError"
+}

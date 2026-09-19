@@ -1,0 +1,9 @@
+portfolio_id,portfolio_name,client_id,client_type,base_currency
+P001,Alice Wealth Growth,C001,INDIVIDUAL,USD
+P002,Bob Retirement Fund,C002,PENSION,USD
+P003,Carol Balanced Portfolio,C003,INDIVIDUAL,USD
+P004,Delta Pension Trust,C004,PENSION,USD
+P005,Echo Family Office,C005,FAMILY_OFFICE,USD
+P006,Foxtrot Income Fund,C006,MUTUAL_FUND,USD
+P007,Golf Endowment,C007,ENDOWMENT,USD
+P008,Hotel Trading Book,C008,PROP_DESK,USD

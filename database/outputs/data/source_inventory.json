@@ -1,0 +1,886 @@
+{
+  "D1 securities.csv": {
+    "sha256": "0f761c204dcf533c2dd0caed3df44f8d306d3accc3f3c21a7d2ac01a0cdf8b41",
+    "header": [
+      "security_id",
+      "symbol",
+      "name",
+      "type",
+      "currency",
+      "underlying_security_id",
+      "status"
+    ],
+    "row_count": 14,
+    "malformed_rows": [],
+    "duplicate_complete_rows": 0,
+    "columns": {
+      "security_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "SEC001",
+          "SEC002",
+          "SEC003",
+          "SEC004",
+          "SEC005",
+          "SEC006",
+          "SEC007",
+          "SEC008",
+          "SEC009",
+          "SEC010",
+          "SEC011",
+          "SEC012",
+          "SEC013",
+          "SEC014"
+        ]
+      },
+      "symbol": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "APX",
+          "AQC",
+          "CSM",
+          "FLC",
+          "FLC-PFD",
+          "GBC",
+          "HBR",
+          "MRF",
+          "NWI",
+          "SLE",
+          "SPN",
+          "UNF",
+          "UNF-CB28",
+          "VTX"
+        ]
+      },
+      "name": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "Acquirer Corp",
+          "Apex Pharma",
+          "Cascade Materials",
+          "Falcon Insurance",
+          "Falcon Insurance Preference Shares",
+          "GlobalBank Corp",
+          "Harbor Retail",
+          "Meridian Foods",
+          "Northwind Industries",
+          "Solstice Energy",
+          "SpinCo Renewables",
+          "Union Freight",
+          "Union Freight 5% Convertible Bond 2028",
+          "Vertex Technologies"
+        ]
+      },
+      "type": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "CONVERTIBLE_BOND",
+          "EQUITY",
+          "PREFERENCE_SHARE"
+        ]
+      },
+      "currency": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "USD"
+        ]
+      },
+      "underlying_security_id": {
+        "empty_count_among_structurally_valid_rows": 11,
+        "distinct_values": [
+          "",
+          "SEC004",
+          "SEC009",
+          "SEC010"
+        ]
+      },
+      "status": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "ACTIVE"
+        ]
+      }
+    }
+  },
+  "D2 portfolios.csv": {
+    "sha256": "f56dd7d0728a4f158f1b80883d2b60c13bd783da56bb011715e9e54ea61f799d",
+    "header": [
+      "portfolio_id",
+      "portfolio_name",
+      "client_id",
+      "client_type",
+      "base_currency"
+    ],
+    "row_count": 8,
+    "malformed_rows": [],
+    "duplicate_complete_rows": 0,
+    "columns": {
+      "portfolio_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008"
+        ]
+      },
+      "portfolio_name": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "Alice Wealth Growth",
+          "Bob Retirement Fund",
+          "Carol Balanced Portfolio",
+          "Delta Pension Trust",
+          "Echo Family Office",
+          "Foxtrot Income Fund",
+          "Golf Endowment",
+          "Hotel Trading Book"
+        ]
+      },
+      "client_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "C001",
+          "C002",
+          "C003",
+          "C004",
+          "C005",
+          "C006",
+          "C007",
+          "C008"
+        ]
+      },
+      "client_type": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "ENDOWMENT",
+          "FAMILY_OFFICE",
+          "INDIVIDUAL",
+          "MUTUAL_FUND",
+          "PENSION",
+          "PROP_DESK"
+        ]
+      },
+      "base_currency": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "USD"
+        ]
+      }
+    }
+  },
+  "D3 positions.csv": {
+    "sha256": "d44c13688a1a5493d149afd3ff15227c742da97368a8919757bcf2cc2f63944d",
+    "header": [
+      "portfolio_id",
+      "security_id",
+      "qty",
+      "avg_cost",
+      "as_of_date"
+    ],
+    "row_count": 27,
+    "malformed_rows": [],
+    "duplicate_complete_rows": 0,
+    "columns": {
+      "portfolio_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008"
+        ]
+      },
+      "security_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "SEC001",
+          "SEC002",
+          "SEC003",
+          "SEC004",
+          "SEC005",
+          "SEC006",
+          "SEC007",
+          "SEC008",
+          "SEC009",
+          "SEC010",
+          "SEC011",
+          "SEC012"
+        ]
+      },
+      "qty": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "100",
+          "1000",
+          "1200",
+          "1500",
+          "200",
+          "2000",
+          "2500",
+          "300",
+          "3000",
+          "400",
+          "4000",
+          "500",
+          "5000",
+          "600",
+          "6000",
+          "800",
+          "8000",
+          "900"
+        ]
+      },
+      "avg_cost": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "1000.00",
+          "14.50",
+          "148.00",
+          "149.00",
+          "15.00",
+          "150.00",
+          "17.50",
+          "18.00",
+          "18.50",
+          "19.00",
+          "19.50",
+          "21.00",
+          "22.00",
+          "22.50",
+          "23.50",
+          "24.00",
+          "31.00",
+          "32.00",
+          "35.00",
+          "36.00",
+          "37.50",
+          "38.00",
+          "43.00",
+          "44.00",
+          "50.00",
+          "59.50",
+          "60.00"
+        ]
+      },
+      "as_of_date": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "2026-01-01"
+        ]
+      }
+    }
+  },
+  "D4 cash_balances.csv": {
+    "sha256": "eae88271c0064f1ede3c2c50eb2a8ee3fcd7986ab68c57ba464745fff37a04a2",
+    "header": [
+      "portfolio_id",
+      "currency",
+      "balance",
+      "as_of_date"
+    ],
+    "row_count": 8,
+    "malformed_rows": [],
+    "duplicate_complete_rows": 0,
+    "columns": {
+      "portfolio_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008"
+        ]
+      },
+      "currency": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "USD"
+        ]
+      },
+      "balance": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "120000.00",
+          "15000.00",
+          "250000.00",
+          "30000.00",
+          "42000.00",
+          "65000.00",
+          "8000.00",
+          "95000.00"
+        ]
+      },
+      "as_of_date": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "2026-01-01"
+        ]
+      }
+    }
+  },
+  "D5 prices.csv": {
+    "sha256": "dc19e8f8a3b5fb9a3f44f4b0207ab7f76d3c6fedda08b59d103d9da43e1f2e7e",
+    "header": [
+      "security_id",
+      "price_date",
+      "close_price",
+      "note"
+    ],
+    "row_count": 41,
+    "malformed_rows": [
+      {
+        "line": 19,
+        "fields": 5,
+        "raw_fields": [
+          "SEC005",
+          "2026-05-15",
+          "21.00",
+          "Post name-change - no economic impact",
+          " symbol changes to HRG"
+        ]
+      }
+    ],
+    "duplicate_complete_rows": 0,
+    "columns": {
+      "security_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "SEC001",
+          "SEC002",
+          "SEC003",
+          "SEC004",
+          "SEC005",
+          "SEC006",
+          "SEC007",
+          "SEC008",
+          "SEC009",
+          "SEC010",
+          "SEC011",
+          "SEC012",
+          "SEC013",
+          "SEC014"
+        ]
+      },
+      "price_date": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "2026-01-01",
+          "2026-01-14",
+          "2026-01-15",
+          "2026-01-19",
+          "2026-01-22",
+          "2026-02-04",
+          "2026-02-10",
+          "2026-02-11",
+          "2026-02-20",
+          "2026-02-28",
+          "2026-03-01",
+          "2026-03-10",
+          "2026-03-14",
+          "2026-03-20",
+          "2026-03-24",
+          "2026-04-01",
+          "2026-04-04",
+          "2026-04-09",
+          "2026-04-14",
+          "2026-04-25",
+          "2026-05-01",
+          "2026-05-04",
+          "2026-05-06",
+          "2026-05-14",
+          "2026-05-19",
+          "2026-05-20"
+        ]
+      },
+      "close_price": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "1.10",
+          "1000.00",
+          "1050.00",
+          "12.00",
+          "15.00",
+          "150.00",
+          "152.00",
+          "18.00",
+          "19.50",
+          "19.80",
+          "20.00",
+          "21.00",
+          "22.00",
+          "24.00",
+          "26.00",
+          "26.50",
+          "29.00",
+          "30.00",
+          "30.50",
+          "31.50",
+          "32.00",
+          "325.00",
+          "34.00",
+          "37.70",
+          "38.00",
+          "38.20",
+          "39.10",
+          "40.45",
+          "41.00",
+          "44.00",
+          "46.00",
+          "50.00",
+          "6.90",
+          "60.00",
+          "62.00",
+          "65.00",
+          "76.00"
+        ]
+      },
+      "note": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "Ex-dividend adjusted for CA015",
+          "Ex-dividend adjusted open",
+          "Fair value used for CA004 stock dividend distribution",
+          "Final liquidation cash proceeds per share (pay date)",
+          "Opening bootstrap price",
+          "Opening bootstrap price (par value basis)",
+          "Post bonus-issue adjusted price (pay date)",
+          "Post reverse-split adjusted price (pay date)",
+          "Post spin-off adjusted parent price (pay date)",
+          "Post tender-offer close (pay date)",
+          "Post-merger close (pay date CA005)",
+          "Post-split adjusted price (pay date)",
+          "Pre CA015 cum-dividend close",
+          "Pre bonus-issue close (day before ex-date CA003)",
+          "Pre cum-dividend close (day before ex-date)",
+          "Pre name-change close",
+          "Pre reverse-split close (day before ex-date CA013)",
+          "Pre rights-issue close (day before ex-date CA008)",
+          "Pre spin-off close (day before ex-date CA006)",
+          "Pre stock-dividend close (day before ex-date CA004)",
+          "Pre tender-offer close (day before ex-date CA009)",
+          "Pre-conversion close (day before ex-date CA011)",
+          "Pre-conversion close (day before ex-date CA012)",
+          "Pre-delisting close (day before ex-date CA007)",
+          "Pre-merger close (day before ex-date CA005)",
+          "Pre-merger-completion close",
+          "Pre-split close (day before ex-date CA002)",
+          "SpinCo Renewables opening price on distribution (pay date CA006)",
+          "Theoretical ex-rights price (TERP) after CA008 pay date"
+        ]
+      }
+    }
+  },
+  "D6 corporate_actions.csv": {
+    "sha256": "6302af1b97e40c3dbc24d79539ec2cde0aaecc274c5709d2cc5ac6d6d689848d",
+    "header": [
+      "ca_id",
+      "security_id",
+      "action_type",
+      "tier",
+      "status",
+      "ex_date",
+      "record_date",
+      "pay_date",
+      "election_deadline",
+      "ratio_numerator",
+      "ratio_denominator",
+      "cash_rate_per_share",
+      "subscription_price",
+      "offer_price",
+      "new_security_id",
+      "cost_basis_allocation_pct",
+      "tax_withholding_pct",
+      "notes"
+    ],
+    "row_count": 16,
+    "malformed_rows": [
+      {
+        "line": 11,
+        "fields": 19,
+        "raw_fields": [
+          "CA010",
+          "SEC001",
+          "DRIP_ELECTION",
+          "2",
+          "ACTIVE",
+          "2026-01-15",
+          "2026-01-16",
+          "2026-02-01",
+          "2026-01-25",
+          "",
+          "",
+          "0.50",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "15",
+          "DRIP option attached to CA001 dividend; reinvestment price USD 42.00 per share (see ca_elections.csv)"
+        ]
+      },
+      {
+        "line": 15,
+        "fields": 19,
+        "raw_fields": [
+          "CA014",
+          "SEC005",
+          "NAME_CHANGE",
+          "1",
+          "ACTIVE",
+          "2026-05-15",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Harbor Retail renamed to Harbor Retail Group; symbol changes HBR to HRG",
+          " no economic impact"
+        ]
+      }
+    ],
+    "duplicate_complete_rows": 0,
+    "columns": {
+      "ca_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "CA001",
+          "CA002",
+          "CA003",
+          "CA004",
+          "CA005",
+          "CA006",
+          "CA007",
+          "CA008",
+          "CA009",
+          "CA011",
+          "CA012",
+          "CA013",
+          "CA015",
+          "CA016"
+        ]
+      },
+      "security_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "SEC001",
+          "SEC002",
+          "SEC003",
+          "SEC004",
+          "SEC005",
+          "SEC006",
+          "SEC007",
+          "SEC008",
+          "SEC009",
+          "SEC010",
+          "SEC011",
+          "SEC012"
+        ]
+      },
+      "action_type": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "BONUS_ISSUE",
+          "CASH_DIVIDEND",
+          "CONVERSION",
+          "DELISTING",
+          "MERGER",
+          "REVERSE_SPLIT",
+          "RIGHTS_ISSUE",
+          "SPIN_OFF",
+          "STOCK_DIVIDEND",
+          "STOCK_SPLIT",
+          "TENDER_OFFER"
+        ]
+      },
+      "tier": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      "status": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "ACTIVE",
+          "REVERSED"
+        ]
+      },
+      "ex_date": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "2026-01-15",
+          "2026-01-20",
+          "2026-02-05",
+          "2026-02-12",
+          "2026-03-01",
+          "2026-03-15",
+          "2026-03-25",
+          "2026-04-05",
+          "2026-04-10",
+          "2026-04-15",
+          "2026-05-05",
+          "2026-05-20"
+        ]
+      },
+      "record_date": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "2026-01-16",
+          "2026-01-21",
+          "2026-02-06",
+          "2026-02-13",
+          "2026-03-02",
+          "2026-03-16",
+          "2026-03-26",
+          "2026-04-06",
+          "2026-04-11",
+          "2026-04-16",
+          "2026-05-06",
+          "2026-05-21"
+        ]
+      },
+      "pay_date": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "2026-01-22",
+          "2026-02-01",
+          "2026-02-10",
+          "2026-02-20",
+          "2026-03-10",
+          "2026-03-20",
+          "2026-04-01",
+          "2026-04-25",
+          "2026-04-30",
+          "2026-05-01",
+          "2026-05-06",
+          "2026-06-05"
+        ]
+      },
+      "election_deadline": {
+        "empty_count_among_structurally_valid_rows": 9,
+        "distinct_values": [
+          "",
+          "2026-04-20",
+          "2026-04-24"
+        ]
+      },
+      "ratio_numerator": {
+        "empty_count_among_structurally_valid_rows": 4,
+        "distinct_values": [
+          "",
+          "1",
+          "2",
+          "25",
+          "3"
+        ]
+      },
+      "ratio_denominator": {
+        "empty_count_among_structurally_valid_rows": 4,
+        "distinct_values": [
+          "",
+          "1",
+          "10",
+          "20",
+          "4",
+          "5"
+        ]
+      },
+      "cash_rate_per_share": {
+        "empty_count_among_structurally_valid_rows": 10,
+        "distinct_values": [
+          "",
+          "0.50",
+          "0.55",
+          "1.10",
+          "2.00"
+        ]
+      },
+      "subscription_price": {
+        "empty_count_among_structurally_valid_rows": 12,
+        "distinct_values": [
+          "",
+          "8.00"
+        ]
+      },
+      "offer_price": {
+        "empty_count_among_structurally_valid_rows": 13,
+        "distinct_values": [
+          "",
+          "25.00"
+        ]
+      },
+      "new_security_id": {
+        "empty_count_among_structurally_valid_rows": 10,
+        "distinct_values": [
+          "",
+          "SEC009",
+          "SEC010",
+          "SEC013",
+          "SEC014"
+        ]
+      },
+      "cost_basis_allocation_pct": {
+        "empty_count_among_structurally_valid_rows": 13,
+        "distinct_values": [
+          "",
+          "15"
+        ]
+      },
+      "tax_withholding_pct": {
+        "empty_count_among_structurally_valid_rows": 12,
+        "distinct_values": [
+          "",
+          "15"
+        ]
+      },
+      "notes": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "1 bonus share per 5 held Apex Pharma",
+          "1 new share per 20 held Harbor Retail fair value USD 19.80 on distribution date",
+          "1-for-4 rights issue Cascade Materials at subscription price USD 8.00",
+          "1-for-5 reverse split Falcon Insurance",
+          "2-for-1 stock split Vertex Technologies",
+          "Convertible bond UNF-CB28 convertible into UNF equity at 25 shares per bond unit",
+          "Duplicate rights issue entry created in error and later reversed - use to test reversal/correction and audit trail logic",
+          "Meridian Foods delisted - final liquidation cash proceeds USD 1.10 per share",
+          "Northwind Industries acquired by Acquirer Corp - 3 AQC shares + USD 2.00 cash per 4 NWI shares held",
+          "Preference shares FLC-PFD convertible into FLC common 1-for-1",
+          "Q1 dividend GlobalBank Corp - USD 0.50 per share",
+          "Q2 dividend GlobalBank Corp - USD 0.55 per share",
+          "Solstice Energy spins off SpinCo Renewables - 1 SPN share per 10 SLE held; 15 pct of parent cost basis reallocated to SPN",
+          "Tender offer Union Freight at USD 25.00 per share capped at 30 pct of holding pro-rata if oversubscribed"
+        ]
+      }
+    }
+  },
+  "D7 ca_elections.csv": {
+    "sha256": "12b2897bf5f2b7711b2b13f0e90deb035282f737f0c213d22b36dd191719b009",
+    "header": [
+      "election_id",
+      "ca_id",
+      "portfolio_id",
+      "election_type",
+      "elected_qty",
+      "election_date",
+      "status",
+      "notes"
+    ],
+    "row_count": 9,
+    "malformed_rows": [],
+    "duplicate_complete_rows": 0,
+    "columns": {
+      "election_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "E001",
+          "E002",
+          "E003",
+          "E004",
+          "E005",
+          "E006",
+          "E007",
+          "E008",
+          "E009"
+        ]
+      },
+      "ca_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "CA008",
+          "CA009",
+          "CA010",
+          "CA011",
+          "CA012"
+        ]
+      },
+      "portfolio_id": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "P001",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007"
+        ]
+      },
+      "election_type": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "CASH",
+          "CONVERT",
+          "DRIP",
+          "LAPSE",
+          "SUBSCRIBE",
+          "TENDER"
+        ]
+      },
+      "elected_qty": {
+        "empty_count_among_structurally_valid_rows": 3,
+        "distinct_values": [
+          "",
+          "0",
+          "100",
+          "150",
+          "300",
+          "750",
+          "90"
+        ]
+      },
+      "election_date": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "2026-01-24",
+          "2026-01-25",
+          "2026-04-18",
+          "2026-04-19",
+          "2026-04-20",
+          "2026-04-22"
+        ]
+      },
+      "status": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "CONFIRMED"
+        ]
+      },
+      "notes": {
+        "empty_count_among_structurally_valid_rows": 0,
+        "distinct_values": [
+          "P001 elects to reinvest GBC dividend into additional shares at USD 42.00",
+          "P001 holds 300 UNF - tendering full 30 pct cap of 90 shares",
+          "P003 converts all 100 units of UNF-CB28 into UNF equity",
+          "P003 holds 600 CSM - full entitlement of 150 rights subscribed",
+          "P004 elects standard cash dividend (no reinvestment) - default election",
+          "P005 converts all 300 FLC-PFD preference shares into FLC common",
+          "P006 holds 2000 CSM - entitlement of 500 rights allowed to lapse unexercised",
+          "P007 elects to reinvest GBC dividend into additional shares at USD 42.00",
+          "P007 holds 2500 UNF - tendering full 30 pct cap of 750 shares"
+        ]
+      }
+    }
+  }
+}
