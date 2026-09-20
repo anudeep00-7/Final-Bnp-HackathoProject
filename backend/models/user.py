@@ -1,12 +1,15 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Boolean, Column, DateTime, String, text
 
 from database.db import Base
 
 
 class User(Base):
     __tablename__ = "users"
+    __table_args__ = {"schema": "corporate_actions"}
 
-    user_id = Column(String(20), primary_key=True)
-    name = Column(String(100), nullable=False)
-    role = Column(String(10), nullable=False)          # ADMIN or ANALYST
-    portfolio_id = Column(String(200))                 # "ALL" for admin, "P001,P002" for analyst
+    user_id = Column(String, primary_key=True)
+    display_name = Column(String, nullable=False)
+    role = Column(String, nullable=False)
+    auth_subject = Column(String, unique=True)
+    is_active = Column(Boolean, nullable=False, server_default=text("true"))
+    created_at = Column(DateTime(timezone=True), nullable=False, server_default=text("clock_timestamp()"))

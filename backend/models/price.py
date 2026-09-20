@@ -1,13 +1,13 @@
-from sqlalchemy import Column, Date, ForeignKey, Integer, String
+from sqlalchemy import Column, Date, String, ForeignKey
 
 from database.db import Base, Money
 
 
 class Price(Base):
     __tablename__ = "prices"
+    __table_args__ = {"schema": "corporate_actions"}
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    security_id = Column(String(20), ForeignKey("securities.security_id"), nullable=False, index=True)
-    price_date = Column(Date, nullable=False, index=True)
+    security_id = Column(String, ForeignKey("corporate_actions.securities.security_id"), primary_key=True)
+    price_date = Column(Date, primary_key=True)
     close_price = Column(Money, nullable=False)
-    note = Column(String(300))
+    note = Column(String)

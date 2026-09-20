@@ -1,4 +1,20 @@
+"""
+csv_loader.py  —  MIGRATION / DEV-SEEDING UTILITY ONLY
+========================================================
+This module is NOT imported by any runtime API code.
+It was used to load CSV fixture data into the database during initial
+development and the Supabase migration.
+
+DO NOT call this from any API route, service, or FastAPI startup hook.
+All runtime data access is now through SQLAlchemy against Supabase PostgreSQL.
+
+Safe to retain for:
+  - local development re-seeding
+  - disaster recovery from CSV fixtures
+  - historical reference
+"""
 import logging
+
 import re
 
 import pandas as pd

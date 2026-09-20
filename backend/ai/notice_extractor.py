@@ -46,9 +46,34 @@ DATE_FIELDS = {
 }
 
 
-def load_securities(path: Optional[str] = None) -> list:
+def load_securities(db=None) -> list:
+    """
+    Load securities from the database when a SQLAlchemy Session is supplied.
+    Falls back to the CSV file only for CLI/standalone usage (e.g. __main__ block).
+
+    IMPORTANT: raw notice input (ca_notices_raw.csv) is intentionally NOT
+    imported into the database. It remains an AI/NLP input source.
+    """
+    if db is not None:
+        # DB path: resolve security reference data from Supabase
+        from models.security import Security
+        rows = db.query(Security).all()
+        return [
+            {
+                "security_id": s.security_id,
+                "name": s.name,
+                "symbol": s.symbol,
+                "type": s.type,
+                "currency": s.currency,
+                "status": s.status,
+            }
+            for s in rows
+        ]
+    # Fallback: CSV (only used when called from __main__ without a DB session)
     import pandas as pd
-    path = path or Path(__file__).resolve().parents[1] / "data" / "securities.csv"
+    path = Path(__file__).resolve().parents[1] / "data" / "securities.csv"
+    if not path.exists():
+        return []  # graceful degradation when CSV not present
     return pd.read_csv(path).to_dict("records")
 
 

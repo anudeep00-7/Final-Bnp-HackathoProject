@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from ai import notice_extractor
-from backend.database.db import get_db
+from database.db import get_db
 from reports import pdf_generator, report_service
 from routes.auth_routes import get_current_user
 from services import audit_service
@@ -38,5 +38,6 @@ class NoticeBody(BaseModel):
 
 
 @router.post("/extract-notice")
-def extract_notice(body: NoticeBody, user=Depends(get_current_user)):
-    return notice_extractor.extract_notice(body.text, notice_extractor.load_securities())
+def extract_notice(body: NoticeBody, db: Session = Depends(get_db), user=Depends(get_current_user)):
+    securities = notice_extractor.load_securities(db=db)
+    return notice_extractor.extract_notice(body.text, securities)

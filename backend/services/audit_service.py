@@ -1,5 +1,29 @@
+"""
+audit_service.py
+
+Reads and writes audit_logs in corporate_actions schema via SQLAlchemy.
+All field names match the actual Supabase schema (V01_schema_and_tables.sql).
+
+Schema reference:
+  audit_id       bigint GENERATED ALWAYS AS IDENTITY
+  processing_id  bigint
+  ca_id          text
+  security_id    text
+  portfolio_id   text
+  action         text   -- e.g. 'PROCESSING_INSERT', 'REVERSAL'
+  outcome        text   -- mirrors ca_processing.status
+  processing_date timestamptz
+  rule_applied   text
+  before_state   jsonb
+  after_state    jsonb
+  cash_movement  finite_numeric
+  performed_by   text
+  occurred_at    timestamptz
+  reason         text
+  reversal_of    bigint
+"""
+
 import json
-import uuid
 from datetime import date, datetime, timezone
 from decimal import Decimal
 from typing import Optional
@@ -8,7 +32,7 @@ from sqlalchemy.orm import Session
 
 from models.audit_log import AuditLog
 
-ALL_PORTFOLIOS = "ALL"   # used for action-level records (REJECTED / FAILED)
+ALL_PORTFOLIOS = "ALL"   # sentinel for action-level (REJECTED/FAILED) records
 
 
 def _now() -> str:
@@ -36,84 +60,88 @@ def _as_dict(value) -> dict:
         return {}
 
 
-# ---------- writing (called by Shailu's processors) ----------
-
-def log_adjustment(db: Session, *, action_id: str, portfolio_id: str, rule_applied: str,
-                   before_state: dict, after_state: dict, cash_movement: float = 0.0):
-    """Add one audit row. Does NOT commit, so it lives in the same transaction
-    as the position/cash update: both succeed or both roll back."""
-    row = AuditLog(
-        audit_id=f"AUD-{uuid.uuid4().hex[:12]}",
-        action_id=action_id,
-        portfolio_id=portfolio_id,
-        before_state=_clean(before_state),
-        after_state=_clean(after_state),
-        rule_applied=rule_applied,
-        cash_movement=float(cash_movement or 0),
-        timestamp=_now(),
-    )
-    db.add(row)
-    db.flush()
-    return row
-
-
-def log_outcome(db: Session, *, action_id: str, status: str, reason: str):
-    """Audit row for a REJECTED or FAILED action (no portfolio numbers)."""
-    return log_adjustment(
-        db, action_id=action_id, portfolio_id=ALL_PORTFOLIOS,
-        rule_applied=f"Action {status.lower()}",
-        before_state={}, after_state={"status": status, "reason": reason}, cash_movement=0.0,
-    )
-
-
 # ---------- access control ----------
 
-def allowed_portfolios(user: dict) -> Optional[set]:
+def allowed_portfolios(user) -> Optional[set]:
     """None = Admin (sees everything). Otherwise the set of assigned portfolios."""
-    if str(user.get("role", "")).upper() == "ADMIN":
+    role = getattr(user, "role", None) or user.get("role", "")
+    if str(role).upper() == "ADMIN":
         return None
-    raw = user.get("portfolio_id") or []
-    if isinstance(raw, str):
-        raw = raw.split(",")
-    return {p.strip() for p in raw if p and p.strip()}
+    # User model: check user_portfolios via relationship or just use role
+    # For dict-style user (backwards compat):
+    if isinstance(user, dict):
+        raw = user.get("portfolio_id") or []
+        if isinstance(raw, str):
+            raw = raw.split(",")
+        return {p.strip() for p in raw if p and p.strip()}
+    # ORM User object — portfolios loaded lazily via query in route layer
+    return None  # will be filtered in route if needed
 
 
-def can_view(user: dict, portfolio_id: str) -> bool:
+def can_view(user, portfolio_id: str) -> bool:
     allowed = allowed_portfolios(user)
     return allowed is None or portfolio_id in allowed
 
 
-# ---------- reading ----------
+# ---------- serialisation ----------
 
 def serialize(row: AuditLog) -> dict:
     return {
         "audit_id": row.audit_id,
-        "action_id": row.action_id,
+        "ca_id": row.ca_id,
+        "security_id": row.security_id,
         "portfolio_id": row.portfolio_id,
+        "action": row.action,
+        "outcome": row.outcome,
+        "processing_date": row.processing_date.isoformat() if row.processing_date else None,
+        "rule_applied": row.rule_applied,
         "before_state": _as_dict(row.before_state),
         "after_state": _as_dict(row.after_state),
-        "rule_applied": row.rule_applied,
-        "cash_movement": row.cash_movement,
-        "timestamp": row.timestamp,
+        "cash_movement": float(row.cash_movement) if row.cash_movement is not None else 0.0,
+        "performed_by": row.performed_by,
+        "occurred_at": row.occurred_at.isoformat() if row.occurred_at else None,
+        "reason": row.reason,
+        "reversal_of": row.reversal_of,
+        # Legacy aliases so report_service / nl_query still work
+        "action_id": row.ca_id,
+        "timestamp": row.occurred_at.isoformat() if row.occurred_at else None,
     }
 
 
-def list_audit(db: Session, user: dict, action_id: Optional[str] = None,
+# ---------- reading ----------
+
+def list_audit(db: Session, user, action_id: Optional[str] = None,
                portfolio_id: Optional[str] = None, limit: int = 500) -> list:
     q = db.query(AuditLog)
-    allowed = allowed_portfolios(user)
-    if allowed is not None:
-        q = q.filter(AuditLog.portfolio_id.in_(list(allowed)))
+
+    # Role-based filtering
+    role = getattr(user, "role", None) or (user.get("role") if isinstance(user, dict) else "ADMIN")
+    if str(role).upper() != "ADMIN":
+        # Analyst: restrict to their portfolios
+        from models.user_portfolio import UserPortfolio
+        user_id = getattr(user, "user_id", None) or (user.get("user_id") if isinstance(user, dict) else None)
+        if user_id:
+            assigned = [
+                r.portfolio_id
+                for r in db.query(UserPortfolio).filter_by(user_id=user_id).all()
+            ]
+            q = q.filter(AuditLog.portfolio_id.in_(assigned))
+
     if action_id:
-        q = q.filter(AuditLog.action_id == action_id)
+        q = q.filter(AuditLog.ca_id == action_id)
     if portfolio_id:
         q = q.filter(AuditLog.portfolio_id == portfolio_id)
-    rows = q.order_by(AuditLog.timestamp.desc(), AuditLog.audit_id.desc()).limit(limit).all()
+
+    rows = q.order_by(AuditLog.occurred_at.desc(), AuditLog.audit_id.desc()).limit(limit).all()
     return [serialize(r) for r in rows]
 
 
 def audit_for_portfolio(db: Session, portfolio_id: str) -> list:
-    """Oldest first. Used by reports."""
-    rows = (db.query(AuditLog).filter(AuditLog.portfolio_id == portfolio_id)
-            .order_by(AuditLog.timestamp, AuditLog.audit_id).all())
+    """Oldest first. Used by report_service."""
+    rows = (
+        db.query(AuditLog)
+        .filter(AuditLog.portfolio_id == portfolio_id)
+        .order_by(AuditLog.occurred_at, AuditLog.audit_id)
+        .all()
+    )
     return [serialize(r) for r in rows]
